@@ -10,20 +10,22 @@ function SignIn() {
 
     const handleLogin = async (e) => {
         e.preventDefault();
-
         setMessage("");
 
         try {
-            const response = await fetch("https://amazon-clone-react-rz9a.onrender.com/users/login", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    email: email,
-                    password: password
-                })
-            });
+            const response = await fetch(
+                "http://localhost:5000/users/login",
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        email: email,
+                        password: password
+                    })
+                }
+            );
 
             const data = await response.json();
 
@@ -32,21 +34,24 @@ function SignIn() {
                 return;
             }
 
-            // Save JWT token
             localStorage.setItem("token", data.token);
 
-            // Save user information if backend sends it
             if (data.user) {
-                localStorage.setItem("user", JSON.stringify(data.user));
+                localStorage.setItem(
+                    "user",
+                    JSON.stringify(data.user)
+                );
             }
 
             setMessage("Login successful!");
 
-            // Go to home page
             navigate("/");
         } catch (error) {
             console.error("Login Error:", error);
-            setMessage("Cannot connect to server. Make sure backend is running.");
+
+            setMessage(
+                "Cannot connect to server. Make sure backend is running."
+            );
         }
     };
 
@@ -63,6 +68,7 @@ function SignIn() {
                 <form onSubmit={handleLogin}>
 
                     <label>Email</label>
+
                     <input
                         type="email"
                         value={email}
@@ -72,6 +78,7 @@ function SignIn() {
                     />
 
                     <label>Password</label>
+
                     <input
                         type="password"
                         value={password}
@@ -97,7 +104,10 @@ function SignIn() {
                 </p>
 
                 <Link to="/signup">
-                    <button type="button" className="create-account">
+                    <button
+                        type="button"
+                        className="create-account"
+                    >
                         Create your Amazon account
                     </button>
                 </Link>

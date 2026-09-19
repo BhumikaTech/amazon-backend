@@ -33,8 +33,9 @@ const createOrder = async (req, res, next) => {
         }));
 
         const totalAmount = orderItems.reduce(
-            (total, item) =>
-                total + item.price * item.quantity,
+            (total, item) => {
+                return total + item.price * item.quantity;
+            },
             0
         );
 
@@ -63,7 +64,7 @@ const createOrder = async (req, res, next) => {
 
 
 // =========================
-// GET USER ORDERS
+// GET LATEST USER ORDER
 // =========================
 
 const getUserOrders = async (req, res, next) => {
@@ -72,7 +73,8 @@ const getUserOrders = async (req, res, next) => {
 
         const orders = await Order.find({ userId })
             .populate("items.productId")
-            .sort({ createdAt: -1 });
+            .sort({ createdAt: -1 })
+            .limit(1);
 
         res.status(200).json(orders);
 
@@ -81,6 +83,10 @@ const getUserOrders = async (req, res, next) => {
     }
 };
 
+
+// =========================
+// EXPORT CONTROLLERS
+// =========================
 
 module.exports = {
     createOrder,

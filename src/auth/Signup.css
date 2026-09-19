@@ -11,8 +11,11 @@ color: #111;
 }
 
 .logo {
-display: block;
-margin: 25px auto 20px;
+    display: block;
+    width: 100px;
+    height: auto;
+    margin: 25px auto 20px;
+    object-fit: contain;
 }
 
 .signin-container {

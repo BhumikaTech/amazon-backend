@@ -40,7 +40,7 @@ function App() {
 
     try {
       const response = await fetch(
-        "https://amazon-clone-react-rz9a.onrender.com/cart",
+        "http://localhost:5000/cart",
         {
           method: "GET",
           headers: {
@@ -94,7 +94,7 @@ function App() {
 
     try {
       const response = await fetch(
-        "https://amazon-clone-react-rz9a.onrender.com/cart",
+        "http://localhost:5000/cart",
         {
           method: "POST",
           headers: {
@@ -150,7 +150,7 @@ function App() {
 
     try {
       const response = await fetch(
-        `https://amazon-clone-react-rz9a.onrender.com/cart/${productId}`,
+        `http://localhost:5000/cart/${productId}`,
         {
           method: "PUT",
           headers: {
@@ -209,7 +209,7 @@ function App() {
 
     try {
       const response = await fetch(
-        `https://amazon-clone-react-rz9a.onrender.com/cart/${productId}`,
+        `http://localhost:5000/cart/${productId}`,
         {
           method: "PUT",
           headers: {
@@ -254,7 +254,7 @@ function App() {
 
     try {
       const response = await fetch(
-        `https://amazon-clone-react-rz9a.onrender.com/cart/${productId}`,
+        `http://localhost:5000/cart/${productId}`,
         {
           method: "DELETE",
           headers: {

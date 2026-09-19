@@ -16,15 +16,19 @@ function Orders() {
 
       try {
         const response = await fetch(
-          "https://amazon-clone-react-rz9a.onrender.com/orders",
+          "http://localhost:5000/orders",
           {
+            method: "GET",
             headers: {
               Authorization: `Bearer ${token}`,
+              "Content-Type": "application/json",
             },
           }
         );
 
         const data = await response.json();
+
+        console.log("ORDERS DATA:", data);
 
         if (!response.ok) {
           throw new Error(
@@ -32,9 +36,10 @@ function Orders() {
           );
         }
 
-        setOrders(data);
+        setOrders(Array.isArray(data) ? data : []);
       } catch (error) {
         console.error("Orders error:", error);
+        setOrders([]);
       } finally {
         setLoading(false);
       }
@@ -85,28 +90,32 @@ function Orders() {
 
           <hr />
 
-          {order.items.map((item) => (
-            <div
-              className="order-item"
-              key={item._id}
-            >
-              <div>
-                <h3>{item.title}</h3>
+          {order.items && order.items.length > 0 ? (
+            order.items.map((item) => (
+              <div
+                className="order-item"
+                key={item._id || item.productId}
+              >
+                <div>
+                  <h3>{item.title}</h3>
 
-                <p>
-                  Price: ₹{item.price}
-                </p>
+                  <p>
+                    Price: ₹{item.price}
+                  </p>
 
-                <p>
-                  Quantity: {item.quantity}
-                </p>
+                  <p>
+                    Quantity: {item.quantity}
+                  </p>
+                </div>
+
+                <strong>
+                  ₹{item.price * item.quantity}
+                </strong>
               </div>
-
-              <strong>
-                ₹{item.price * item.quantity}
-              </strong>
-            </div>
-          ))}
+            ))
+          ) : (
+            <p>No items found in this order.</p>
+          )}
 
           <hr />
 

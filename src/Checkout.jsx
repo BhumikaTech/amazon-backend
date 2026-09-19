@@ -52,7 +52,7 @@ function Checkout({ cartItems = [] }) {
 
     try {
       const response = await fetch(
-        "https://amazon-clone-react-rz9a.onrender.com/orders",
+        "http://localhost:5000/orders",
         {
           method: "POST",
 
