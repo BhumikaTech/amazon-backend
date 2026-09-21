@@ -14,14 +14,19 @@ const authMiddleware = (req, res, next) => {
 
         const decoded = jwt.verify(
             token,
-            process.env.JWT_SECRET
+            process.env.JWT_SECRET.trim()
         );
 
-        req.user = decoded;
+        req.user = {
+            userId: decoded.userId,
+            role: decoded.role
+        };
 
         next();
 
     } catch (error) {
+        console.error("JWT ERROR:", error.message);
+
         return res.status(401).json({
             message: "Invalid or expired token"
         });
