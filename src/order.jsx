@@ -16,7 +16,7 @@ function Orders() {
 
       try {
         const response = await fetch(
-          "https://amazon-clone-react-2026.onrender.com/orders",
+          "https://amazon-backend-0jvw.onrender.com/orders",
           {
             method: "GET",
             headers: {

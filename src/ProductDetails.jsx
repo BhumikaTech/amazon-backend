@@ -16,7 +16,7 @@ function ProductDetails({ addToCart }) {
                 setError("");
 
                 const response = await fetch(
-                    `https://amazon-clone-react-2026.onrender.com/products/${id}`
+                    `https://amazon-backend-0jvw.onrender.com/products/${id}`
                 );
 
                 const data = await response.json();

@@ -38,7 +38,7 @@ function Checkout({ cartItems }) {
 
     try {
       const response = await fetch(
-        "https://amazon-clone-react-2026.onrender.com/orders",
+        "https://amazon-backend-0jvw.onrender.com/orders",
         {
           method: "POST",
           headers: {
@@ -57,7 +57,9 @@ function Checkout({ cartItems }) {
       const data = await response.json();
 
       if (!response.ok) {
-        throw new Error(data.message || "Failed to place order");
+        throw new Error(
+          data.message || "Failed to place order"
+        );
       }
 
       alert("Order placed successfully!");
@@ -94,7 +96,9 @@ function Checkout({ cartItems }) {
                 type="radio"
                 value="Cash on Delivery"
                 checked={paymentMethod === "Cash on Delivery"}
-                onChange={(e) => setPaymentMethod(e.target.value)}
+                onChange={(e) =>
+                  setPaymentMethod(e.target.value)
+                }
               />
               Cash on Delivery
             </label>
@@ -106,7 +110,9 @@ function Checkout({ cartItems }) {
                 type="radio"
                 value="Online Payment"
                 checked={paymentMethod === "Online Payment"}
-                onChange={(e) => setPaymentMethod(e.target.value)}
+                onChange={(e) =>
+                  setPaymentMethod(e.target.value)
+                }
               />
               Online Payment
             </label>
@@ -114,7 +120,9 @@ function Checkout({ cartItems }) {
             <br />
 
             <button type="submit" disabled={loading}>
-              {loading ? "Placing Order..." : "Place Order"}
+              {loading
+                ? "Placing Order..."
+                : "Place Order"}
             </button>
           </form>
         </div>
@@ -125,10 +133,14 @@ function Checkout({ cartItems }) {
           {cartItems.map((item) => (
             <div key={item._id}>
               <p>{item.title}</p>
+
               <p>
                 ₹{item.price} × {item.quantity}
               </p>
-              <p>₹{item.price * item.quantity}</p>
+
+              <p>
+                ₹{item.price * item.quantity}
+              </p>
             </div>
           ))}
 
