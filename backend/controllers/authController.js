@@ -1,3 +1,4 @@
+```js
 const User = require("../models/user");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
@@ -75,7 +76,7 @@ const login = async (req, res) => {
             });
         }
 
-        // Compare entered password with hashed password
+        // Compare password
         const isPasswordCorrect = await bcrypt.compare(
             password,
             user.password
@@ -87,10 +88,10 @@ const login = async (req, res) => {
             });
         }
 
-        // Generate JWT
+        // Generate JWT token
         const token = jwt.sign(
             {
-                userId: user._id,
+                userId: user._id.toString(),
                 role: user.role
             },
             process.env.JWT_SECRET,
@@ -99,7 +100,7 @@ const login = async (req, res) => {
             }
         );
 
-        // Send JWT to frontend
+        // Send token to frontend
         res.status(200).json({
             message: "Login successful",
             token
@@ -122,3 +123,4 @@ module.exports = {
     signup,
     login
 };
+```
