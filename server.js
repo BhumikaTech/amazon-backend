@@ -2,6 +2,7 @@ const express = require("express");
 require("./db");
 
 const Product = require("./models/product");
+const authRoutes = require("./routes/authRoutes");
 
 const app = express();
 
@@ -40,6 +41,9 @@ app.use((req, res, next) => {
 
 // Middleware
 app.use(express.json());
+
+// Auth routes
+app.use("/auth", authRoutes);
 
 // Home route
 app.get("/", (req, res) => {
