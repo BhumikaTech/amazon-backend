@@ -30,16 +30,7 @@ console.log("JWT SECRET EXISTS:", !!process.env.JWT_SECRET);
 // CORS
 // =========================
 
-app.use(
-    cors({
-        origin: [
-            "http://localhost:5173",
-            "https://amazon-clone-frontend-epa4.onrender.com"
-        ],
-        methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-        allowedHeaders: ["Content-Type", "Authorization"]
-    })
-);
+app.use(cors());
 
 // =========================
 // BODY PARSER
