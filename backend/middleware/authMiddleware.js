@@ -12,10 +12,15 @@ const authMiddleware = (req, res, next) => {
 
         const token = authHeader.split(" ")[1];
 
-        const decoded = jwt.verify(
-            token,
-            process.env.JWT_SECRET
-        );
+        const secret = process.env.JWT_SECRET?.trim();
+
+        if (!secret) {
+            return res.status(500).json({
+                message: "JWT secret is missing"
+            });
+        }
+
+        const decoded = jwt.verify(token, secret);
 
         req.user = {
             userId: decoded.userId,
@@ -25,7 +30,7 @@ const authMiddleware = (req, res, next) => {
         next();
 
     } catch (error) {
-        console.error("JWT ERROR:", error.message);
+        console.error("JWT ERROR:", error);
 
         return res.status(401).json({
             message: "Invalid or expired token"
