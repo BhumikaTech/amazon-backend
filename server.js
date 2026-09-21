@@ -5,7 +5,31 @@ const Product = require("./models/product");
 
 const app = express();
 
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
+
+// CORS: allow your frontend to call this backend
+const allowedOrigins = [
+    "http://localhost:5173",
+    "https://amazon-clone-react-12.onrender.com"
+];
+
+app.use((req, res, next) => {
+    const origin = req.headers.origin;
+
+    if (allowedOrigins.includes(origin)) {
+        res.setHeader("Access-Control-Allow-Origin", origin);
+        res.setHeader("Vary", "Origin");
+    }
+
+    res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+    res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
+
+    if (req.method === "OPTIONS") {
+        return res.sendStatus(204);
+    }
+
+    next();
+});
 
 // Middleware
 app.use(express.json());
