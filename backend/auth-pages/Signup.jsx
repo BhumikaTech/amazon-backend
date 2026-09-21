@@ -24,7 +24,7 @@ function SignUp() {
 
         try {
             const response = await fetch(
-                "https://amazon-clone-react-2026.onrender.com/users/register",
+                "https://amazon-backend-0jvw.onrender.com/auth/signup",
                 {
                     method: "POST",
                     headers: {
