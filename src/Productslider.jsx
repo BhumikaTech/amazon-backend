@@ -11,7 +11,7 @@ function ProductSlider({ search, addToCart }) {
     const fetchProducts = async () => {
       try {
         const response = await fetch(
-          "https://amazon-clone-react-2026.onrender.com"
+          "https://amazon-backend-0jvw.onrender.com/products"
         );
 
         if (!response.ok) {
