@@ -16,7 +16,7 @@ function ProductDetails({ addToCart }) {
                 setError("");
 
                 const response = await fetch(
-                    `http://localhost:5000/products/${id}`
+                    `https://amazon-clone-react-2026.onrender.com/products/${id}`
                 );
 
                 const data = await response.json();
@@ -76,7 +76,6 @@ function ProductDetails({ addToCart }) {
                     />
                 </div>
 
-
                 {/* PRODUCT INFORMATION */}
 
                 <div className="product-details-info">
@@ -85,24 +84,19 @@ function ProductDetails({ addToCart }) {
                         {product.title}
                     </h1>
 
-
                     <div className="product-rating">
                         ⭐ {product.rating || 0} / 5
                     </div>
 
-
                     <hr />
-
 
                     <p className="product-details-price">
                         ₹{product.price}
                     </p>
 
-
                     <p className="product-details-description">
                         {product.description}
                     </p>
-
 
                     <p className="product-details-category">
                         <strong>
@@ -111,14 +105,12 @@ function ProductDetails({ addToCart }) {
                         {product.category}
                     </p>
 
-
                     <p className="product-details-stock">
                         <strong>
                             Available Stock:
                         </strong>{" "}
                         {product.stock}
                     </p>
-
 
                     <button
                         className="add-to-cart-btn"

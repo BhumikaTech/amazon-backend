@@ -11,7 +11,7 @@ function ProductSlider({ search, addToCart }) {
     const fetchProducts = async () => {
       try {
         const response = await fetch(
-          "http://localhost:5000/products"
+          "https://amazon-clone-react-2026.onrender.com"
         );
 
         if (!response.ok) {
@@ -23,7 +23,7 @@ function ProductSlider({ search, addToCart }) {
         setProducts(data);
         setLoading(false);
       } catch (error) {
-        console.error(error);
+        console.error("Error fetching products:", error);
         setError("Failed to fetch products");
         setLoading(false);
       }

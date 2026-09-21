@@ -24,7 +24,7 @@ function SignUp() {
 
         try {
             const response = await fetch(
-                "https://amazon-clone-react-rz9a.onrender.com/users/register",
+                "https://amazon-clone-react-2026.onrender.com/users/register",
                 {
                     method: "POST",
                     headers: {
@@ -55,7 +55,6 @@ function SignUp() {
     return (
         <div className="auth-page">
 
-            {/* Amazon Logo */}
             <Link to="/">
                 <img
                     className="logo"
@@ -71,7 +70,6 @@ function SignUp() {
                     Sign Up
                 </h1>
 
-                {/* Name */}
                 <h5 className="input-lable">
                     Your Name
                 </h5>
@@ -85,7 +83,6 @@ function SignUp() {
                     }
                 />
 
-                {/* Email */}
                 <h5 className="input-lable">
                     Email
                 </h5>
@@ -99,7 +96,6 @@ function SignUp() {
                     }
                 />
 
-                {/* Password */}
                 <h5 className="input-lable">
                     Password
                 </h5>
@@ -113,7 +109,6 @@ function SignUp() {
                     }
                 />
 
-                {/* Signup Button */}
                 <button
                     type="button"
                     onClick={handleSignup}
