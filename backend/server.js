@@ -18,7 +18,6 @@ dotenv.config();
 
 const app = express();
 
-
 // =========================
 // DEBUG
 // =========================
@@ -26,7 +25,6 @@ const app = express();
 console.log("authMiddleware:", typeof authMiddleware);
 console.log("adminMiddleware:", typeof adminMiddleware);
 console.log("JWT SECRET EXISTS:", !!process.env.JWT_SECRET);
-
 
 // =========================
 // CORS
@@ -36,13 +34,12 @@ app.use(
     cors({
         origin: [
             "http://localhost:5173",
-            "https://amazon-clone-react-12.onrender.com"
+            "https://amazon-clone-frontend-epa4.onrender.com"
         ],
         methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
         allowedHeaders: ["Content-Type", "Authorization"]
     })
 );
-
 
 // =========================
 // BODY PARSER
@@ -50,13 +47,11 @@ app.use(
 
 app.use(express.json());
 
-
 // =========================
 // DATABASE
 // =========================
 
 connectDB();
-
 
 // =========================
 // TEST ROUTE
@@ -68,13 +63,11 @@ app.get("/", (req, res) => {
     });
 });
 
-
 // =========================
 // AUTH ROUTES
 // =========================
 
 app.use("/auth", authRoutes);
-
 
 // =========================
 // USER ROUTES
@@ -82,13 +75,11 @@ app.use("/auth", authRoutes);
 
 app.use("/users", userRoutes);
 
-
 // =========================
 // PRODUCT ROUTES
 // =========================
 
 app.use("/products", productRoutes);
-
 
 // =========================
 // CART ROUTES
@@ -96,20 +87,17 @@ app.use("/products", productRoutes);
 
 app.use("/cart", cartRoutes);
 
-
 // =========================
 // ORDER ROUTES
 // =========================
 
 app.use("/orders", orderRoutes);
 
-
 // =========================
 // PROTECTED ROUTES
 // =========================
 
 app.use("/protected", protectedRoutes);
-
 
 // =========================
 // ERROR HANDLER
@@ -123,7 +111,6 @@ app.use((err, req, res, next) => {
         error: err.message
     });
 });
-
 
 // =========================
 // SERVER
